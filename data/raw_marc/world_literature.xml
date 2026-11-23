@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <!-- Record 1: Japanese Literature (Original Japanese Edition) -->
+  <record>
+    <leader>00714cam a2200205 a 4500</leader>
+    <controlfield tag="001">loc-jpn-001</controlfield>
+    <controlfield tag="008">260115s1948    ja            000 0 jpn d</controlfield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">895.6344</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Kawabata, Yasunari, 1899-1972</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Yukiguni</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Yukiguni</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Tokyo :</subfield>
+      <subfield code="b">Shinchosha,</subfield>
+      <subfield code="c">1948.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Japanese fiction</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://example.org/catalog/kawabata-yukiguni-jpn</subfield>
+    </datafield>
+  </record>
+
+  <!-- Record 2: Japanese Literature (English Translation -> Same bf:Work as Record 1) -->
+  <record>
+    <leader>00730cam a2200205 a 4500</leader>
+    <controlfield tag="001">loc-jpn-002</controlfield>
+    <controlfield tag="008">260210s1956    nyu           000 0 eng d</controlfield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">895.6344</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Kawabata, Yasunari, 1899-1972</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Yukiguni</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Snow Country :</subfield>
+      <subfield code="b">translated by Edward G. Seidensticker</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">New York :</subfield>
+      <subfield code="b">Alfred A. Knopf,</subfield>
+      <subfield code="c">1956.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Japanese fiction</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://httpstat.us/404</subfield>
+    </datafield>
+  </record>
+
+  <!-- Record 3: German Literature -->
+  <record>
+    <leader>00695cam a2200205 a 4500</leader>
+    <controlfield tag="001">loc-ger-003</controlfield>
+    <controlfield tag="008">260305s1915    gw            000 0 ger d</controlfield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">833.912</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Kafka, Franz, 1883-1924</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Verwandlung</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Die Verwandlung</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Leipzig :</subfield>
+      <subfield code="b">Kurt Wolff Verlag,</subfield>
+      <subfield code="c">1915.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">German fiction</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://example.org/catalog/kafka-die-verwandlung</subfield>
+    </datafield>
+  </record>
+
+  <!-- Record 4: American Literature -->
+  <record>
+    <leader>00705cam a2200205 a 4500</leader>
+    <controlfield tag="001">loc-usa-004</controlfield>
+    <controlfield tag="008">260320s1952    nyu           000 0 eng d</controlfield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">813.52</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Hemingway, Ernest, 1899-1961</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">The Old Man and the Sea</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">New York :</subfield>
+      <subfield code="b">Charles Scribner's Sons,</subfield>
+      <subfield code="c">1952.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">American fiction</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://example.org/catalog/hemingway-old-man-and-the-sea</subfield>
+    </datafield>
+  </record>
+</collection>

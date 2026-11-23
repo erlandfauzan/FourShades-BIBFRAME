@@ -1,0 +1,40 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix bf: <http://id.loc.gov/ontologies/bibframe/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix celestia: <https://celestia.teyvat.org/bibframe/> .
+
+# Rule 1: Every bf:Instance must link to a parent bf:Work (No Orphan Instances)
+celestia:InstanceShape
+    a sh:NodeShape ;
+    sh:targetClass bf:Instance ;
+    sh:property [
+        sh:path bf:instanceOf ;
+        sh:class bf:Work ;
+        sh:minCount 1 ;
+        sh:message "Heavenly Principles Violation: bf:Instance cannot be orphaned without a parent bf:Work!" ;
+    ] ;
+    sh:property [
+        sh:path bf:title ;
+        sh:minCount 1 ;
+        sh:message "Heavenly Principles Violation: bf:Instance must declare at least one bf:title!" ;
+    ] ;
+    sh:property [
+        sh:path bf:language ;
+        sh:minCount 1 ;
+        sh:pattern "^[a-z]{3}$" ;
+        sh:message "Heavenly Principles Violation: Language code must be a 3-letter lowercase ISO 639-2 code!" ;
+    ] .
+
+# Rule 2: Every bf:Work must have a title and a DDC classification
+celestia:WorkShape
+    a sh:NodeShape ;
+    sh:targetClass bf:Work ;
+    sh:property [
+        sh:path bf:title ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path bf:classification ;
+        sh:minCount 1 ;
+        sh:message "Heavenly Principles Violation: Every bf:Work must have a DDC classification!" ;
+    ] .

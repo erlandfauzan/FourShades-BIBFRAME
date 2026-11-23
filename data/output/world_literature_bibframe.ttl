@@ -1,0 +1,119 @@
+@prefix bf: <http://id.loc.gov/ontologies/bibframe/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://celestia.teyvat.org/bibframe/item/loc-ger-003-c1> a bf:Item ;
+    bf:itemOf <https://celestia.teyvat.org/bibframe/instance/loc-ger-003> .
+
+<https://celestia.teyvat.org/bibframe/item/loc-jpn-001-c1> a bf:Item ;
+    bf:itemOf <https://celestia.teyvat.org/bibframe/instance/loc-jpn-001> .
+
+<https://celestia.teyvat.org/bibframe/item/loc-jpn-002-c1> a bf:Item ;
+    bf:itemOf <https://celestia.teyvat.org/bibframe/instance/loc-jpn-002> .
+
+<https://celestia.teyvat.org/bibframe/item/loc-usa-004-c1> a bf:Item ;
+    bf:itemOf <https://celestia.teyvat.org/bibframe/instance/loc-usa-004> .
+
+<https://celestia.teyvat.org/bibframe/agent/hemingway_ernest_1899_1961> a bf:Agent ;
+    rdfs:label "Hemingway, Ernest, 1899-1961" .
+
+<https://celestia.teyvat.org/bibframe/agent/kafka_franz_1883_1924> a bf:Agent ;
+    rdfs:label "Kafka, Franz, 1883-1924" .
+
+<https://celestia.teyvat.org/bibframe/agent/kawabata_yasunari_1899_1972> a bf:Agent ;
+    rdfs:label "Kawabata, Yasunari, 1899-1972" .
+
+<https://celestia.teyvat.org/bibframe/ddc/813_52> a bf:ClassificationDdc ;
+    bf:classificationPortion "813.52" .
+
+<https://celestia.teyvat.org/bibframe/ddc/833_912> a bf:ClassificationDdc ;
+    bf:classificationPortion "833.912" .
+
+<https://celestia.teyvat.org/bibframe/ddc/895_6344> a bf:ClassificationDdc ;
+    bf:classificationPortion "895.6344" .
+
+<https://celestia.teyvat.org/bibframe/title/inst-loc-ger-003> a bf:Title ;
+    bf:mainTitle "Die Verwandlung" .
+
+<https://celestia.teyvat.org/bibframe/title/inst-loc-jpn-001> a bf:Title ;
+    bf:mainTitle "Yukiguni" .
+
+<https://celestia.teyvat.org/bibframe/title/inst-loc-jpn-002> a bf:Title ;
+    bf:mainTitle "Snow Country: translated by Edward G. Seidensticker" .
+
+<https://celestia.teyvat.org/bibframe/title/inst-loc-usa-004> a bf:Title ;
+    bf:mainTitle "The Old Man and the Sea" .
+
+<https://celestia.teyvat.org/bibframe/title/work-loc-ger-003> a bf:Title ;
+    bf:mainTitle "Verwandlung" .
+
+<https://celestia.teyvat.org/bibframe/title/work-loc-jpn-001> a bf:Title ;
+    bf:mainTitle "Yukiguni" .
+
+<https://celestia.teyvat.org/bibframe/title/work-loc-usa-004> a bf:Title ;
+    bf:mainTitle "The Old Man and the Sea" .
+
+<https://celestia.teyvat.org/bibframe/topic/loc-ger-003-0> a bf:Topic ;
+    rdfs:label "German fiction" .
+
+<https://celestia.teyvat.org/bibframe/topic/loc-jpn-001-0> a bf:Topic ;
+    rdfs:label "Japanese fiction" .
+
+<https://celestia.teyvat.org/bibframe/topic/loc-usa-004-0> a bf:Topic ;
+    rdfs:label "American fiction" .
+
+<https://celestia.teyvat.org/bibframe/work/0a876903b3e6> a bf:Work ;
+    bf:classification <https://celestia.teyvat.org/bibframe/ddc/833_912> ;
+    bf:contribution <https://celestia.teyvat.org/bibframe/agent/kafka_franz_1883_1924> ;
+    bf:hasInstance <https://celestia.teyvat.org/bibframe/instance/loc-ger-003> ;
+    bf:subject <https://celestia.teyvat.org/bibframe/topic/loc-ger-003-0> ;
+    bf:title <https://celestia.teyvat.org/bibframe/title/work-loc-ger-003> .
+
+<https://celestia.teyvat.org/bibframe/work/6891817f4b62> a bf:Work ;
+    bf:classification <https://celestia.teyvat.org/bibframe/ddc/813_52> ;
+    bf:contribution <https://celestia.teyvat.org/bibframe/agent/hemingway_ernest_1899_1961> ;
+    bf:hasInstance <https://celestia.teyvat.org/bibframe/instance/loc-usa-004> ;
+    bf:subject <https://celestia.teyvat.org/bibframe/topic/loc-usa-004-0> ;
+    bf:title <https://celestia.teyvat.org/bibframe/title/work-loc-usa-004> .
+
+<https://celestia.teyvat.org/bibframe/instance/loc-ger-003> a bf:Instance ;
+    bf:electronicLocator <https://example.org/catalog/kafka-die-verwandlung> ;
+    bf:instanceOf <https://celestia.teyvat.org/bibframe/work/0a876903b3e6> ;
+    bf:language "ger" ;
+    bf:title <https://celestia.teyvat.org/bibframe/title/inst-loc-ger-003> ;
+    prov:generatedAtTime "2026-11-23T08:08:25.629500+00:00"^^xsd:dateTime ;
+    prov:wasDerivedFrom "MARC21:loc-ger-003" .
+
+<https://celestia.teyvat.org/bibframe/instance/loc-jpn-001> a bf:Instance ;
+    bf:electronicLocator <https://example.org/catalog/kawabata-yukiguni-jpn> ;
+    bf:instanceOf <https://celestia.teyvat.org/bibframe/work/8e84b14f374b> ;
+    bf:language "jpn" ;
+    bf:title <https://celestia.teyvat.org/bibframe/title/inst-loc-jpn-001> ;
+    prov:generatedAtTime "2026-11-23T08:08:25.628306+00:00"^^xsd:dateTime ;
+    prov:wasDerivedFrom "MARC21:loc-jpn-001" .
+
+<https://celestia.teyvat.org/bibframe/instance/loc-jpn-002> a bf:Instance ;
+    bf:electronicLocator <https://httpstat.us/404> ;
+    bf:instanceOf <https://celestia.teyvat.org/bibframe/work/8e84b14f374b> ;
+    bf:language "eng" ;
+    bf:title <https://celestia.teyvat.org/bibframe/title/inst-loc-jpn-002> ;
+    prov:generatedAtTime "2026-11-23T08:08:25.628801+00:00"^^xsd:dateTime ;
+    prov:wasDerivedFrom "MARC21:loc-jpn-002" .
+
+<https://celestia.teyvat.org/bibframe/instance/loc-usa-004> a bf:Instance ;
+    bf:electronicLocator <https://example.org/catalog/hemingway-old-man-and-the-sea> ;
+    bf:instanceOf <https://celestia.teyvat.org/bibframe/work/6891817f4b62> ;
+    bf:language "eng" ;
+    bf:title <https://celestia.teyvat.org/bibframe/title/inst-loc-usa-004> ;
+    prov:generatedAtTime "2026-11-23T08:08:25.630161+00:00"^^xsd:dateTime ;
+    prov:wasDerivedFrom "MARC21:loc-usa-004" .
+
+<https://celestia.teyvat.org/bibframe/work/8e84b14f374b> a bf:Work ;
+    bf:classification <https://celestia.teyvat.org/bibframe/ddc/895_6344> ;
+    bf:contribution <https://celestia.teyvat.org/bibframe/agent/kawabata_yasunari_1899_1972> ;
+    bf:hasInstance <https://celestia.teyvat.org/bibframe/instance/loc-jpn-001>,
+        <https://celestia.teyvat.org/bibframe/instance/loc-jpn-002> ;
+    bf:subject <https://celestia.teyvat.org/bibframe/topic/loc-jpn-001-0> ;
+    bf:title <https://celestia.teyvat.org/bibframe/title/work-loc-jpn-001> .
+
