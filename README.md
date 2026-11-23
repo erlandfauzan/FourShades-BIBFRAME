@@ -63,56 +63,41 @@ In real-world library operations, migrating institutional Online Public Access C
 - **k6** *(Optional, for running concurrent HTTP load benchmarks)*
 
 ### Step 1: Clone the Repository
-```bash
-git clone [https://github.com/erlandfauzan/FourShades-BIBFRAME.git](https://github.com/erlandfauzan/FourShades-BIBFRAME.git)
-cd FourShades-BIBFRAME
-```
+`git clone https://github.com/erlandfauzan/FourShades-BIBFRAME.git`
+`cd FourShades-BIBFRAME`
 
 ### Step 2: Set Up Virtual Environment (Recommended)
 First, create the virtual environment:
-```bash
-python -m venv venv
-```
+`python -m venv venv`
 
 Next, activate it based on your operating system:
 - **Windows (PowerShell):** `.\venv\Scripts\Activate.ps1`
 - **macOS / Linux:** `source venv/bin/activate`
 
 ### Step 3: Install Dependencies
-```bash
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
+`python -m pip install --upgrade pip`
+`python -m pip install -r requirements.txt`
 
 ### Step 4: Execute ETL Pipeline & Automated Test Suite
 Option A: Generate BIBFRAME 2.0 Knowledge Graph (`Turtle .ttl`)
-```bash
-python -m src.naberius_etl.converter
-```
+`python -m src.naberius_etl.converter`
 
 Option B: Run Automated SHACL Quality Gate & API Contract Tests
-```bash
-pytest -v
-```
+`pytest -v`
 
 ### Step 5: Launch Asmoday Dual-Engine API & Load Benchmark
 Start the FastAPI gateway (interactive Swagger UI available at `http://127.0.0.1:8000/docs`):
-```bash
-uvicorn src.asmoday_gateway.app:app --reload
-```
+`uvicorn src.asmoday_gateway.app:app --reload`
 
 In a second terminal, execute the `k6` SPARQL vs. SQLite latency benchmark:
-```bash
-k6 run benchmarks/k6/dual_engine_benchmark.js
-```
+`k6 run benchmarks/k6/dual_engine_benchmark.js`
 
 ---
 
 ## 🌌 5. Origin & Naming Lore
-
 In the cosmological lore of *Genshin Impact*, Celestia governs the foundational laws of Teyvat through the **Four Shades**—primordial entities presiding over **Life** (*Naberius*), **Time** (*Istaroth*), **Space** (*Asmoday*), and **Death** (*Ronova*)—maintaining strict structural order across the world's records.
 
-**FourShades-BIBFRAME** translates this governance motif into concrete library data engineering and QA architecture. Each Shade encapsulates an isolated microservice responsibility: **Naberius** breathes semantic life into flat MARC21 records; **Istaroth** tracks chronological editions and provenance across time; **Asmoday** bridges relational and graph query spaces; and **Ronova** reaps decayed external URIs into audited `HTTP 410 Gone` tombstones.
+**FourShades-BIBFRAME** draws inspiration from this governance motif into concrete library data engineering and QA architecture. Each Shade encapsulates an isolated microservice responsibility: **Naberius** breathes semantic life into flat MARC21 records; **Istaroth** tracks chronological editions and provenance across time; **Asmoday** bridges relational and graph query spaces; and **Ronova** reaps decayed external URIs into audited `HTTP 410 Gone` tombstones.
 
 ---
 
@@ -134,6 +119,7 @@ In the cosmological lore of *Genshin Impact*, Celestia governs the foundational 
 - `data/raw_marc/world_literature.xml` - Authentic MARCXML Dataset (Japanese, German & American Literature)
 - `data/shapes/bibframe_shapes.ttl` - W3C SHACL Ontological Validation Shapes
 - `data/output/world_literature_bibframe.ttl` - Generated BIBFRAME 2.0 RDF Knowledge Graph
+- `docs/index.html` - Interactive GitHub Pages Architecture & QA Simulator
 - `src/naberius_etl/converter.py` - MARCXML-to-BIBFRAME 2.0 Semantic ETL Engine
 - `src/istaroth_lineage/lineage.py` - Deterministic FRBR `bf:Work` Deduplication & `PROV-O` Tracker
 - `src/asmoday_gateway/app.py` - FastAPI Dual-Engine Gateway & HTTP 410 Tombstone Handler
@@ -154,27 +140,27 @@ The diagram below illustrates the end-to-end execution workflow of the suite fro
 
 ```mermaid
 flowchart TD
-    subgraph Data & Governance Layer
-        A[MARCXML World Literature<br/>data/raw_marc/world_literature.xml]
-        A2[SHACL Shape Constraints<br/>data/shapes/bibframe_shapes.ttl]
+    subgraph Data and Governance Layer
+        A["MARCXML World Literature<br/>data/raw_marc/world_literature.xml"]
+        A2["SHACL Shape Constraints<br/>data/shapes/bibframe_shapes.ttl"]
     end
 
-    subgraph Semantic ETL & Storage Layer
-        B[Naberius ETL & Istaroth Lineage<br/>converter.py & lineage.py]
-        C[BIBFRAME 2.0 RDF Graph<br/>world_literature_bibframe.ttl]
-        D[Normalized SQLite Baseline<br/>relational_db.py]
+    subgraph Semantic ETL and Storage Layer
+        B["Naberius ETL & Istaroth Lineage<br/>converter.py & lineage.py"]
+        C["BIBFRAME 2.0 RDF Graph<br/>world_literature_bibframe.ttl"]
+        D["Normalized SQLite Baseline<br/>relational_db.py"]
     end
 
-    subgraph Automated QA & Lifecycle Modules
-        E[Pytest & pySHACL Quality Gate<br/>tests/shacl/test_graph_quality.py]
-        F[Ronova Async Link-Rot Reaper<br/>reaper.py -> HTTP 410 Gone]
-        G[API Parity & Contract Tests<br/>tests/contract/test_asmoday_api.py]
+    subgraph Automated QA and Lifecycle Layer
+        E["Pytest & pySHACL Quality Gate<br/>tests/shacl/test_graph_quality.py"]
+        F["Ronova Async Link-Rot Reaper<br/>reaper.py (HTTP 410 Gone)"]
+        G["API Parity & Contract Tests<br/>tests/contract/test_asmoday_api.py"]
     end
 
-    subgraph Dual-Engine API, Benchmarking & CI/CD
-        H[Asmoday FastAPI Gateway<br/>/api/v1/graph/works & /api/v1/sql/works]
-        I[k6 Load Benchmark<br/>benchmarks/k6/dual_engine_benchmark.js]
-        J[GitHub Actions Pipeline<br/>.github/workflows/ci.yml]
+    subgraph Delivery and CI Pipeline Layer
+        H["Asmoday FastAPI Gateway<br/>/api/v1/graph/works & /api/v1/sql/works"]
+        I["k6 Load Benchmark<br/>benchmarks/k6/dual_engine_benchmark.js"]
+        J["GitHub Actions Pipeline<br/>.github/workflows/ci.yml"]
     end
 
     A --> B
