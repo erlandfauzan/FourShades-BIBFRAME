@@ -3,26 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FourShades-BIBFRAME | Interactive Architecture & QA Simulator</title>
+  <title>FourShades-BIBFRAME | Semantic Bibliographic ETL & QA Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #090d16;
-      --bg-secondary: #111827;
-      --bg-card: #161f33;
-      --border-color: #26334d;
-      --gold: #eab308;
-      --gold-soft: rgba(234, 179, 8, 0.14);
-      --cyan: #38bdf8;
-      --cyan-soft: rgba(56, 189, 248, 0.14);
-      --emerald: #10b981;
-      --emerald-soft: rgba(16, 185, 129, 0.15);
-      --crimson: #f43f5e;
-      --crimson-soft: rgba(244, 63, 94, 0.15);
-      --violet: #a855f7;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --font-mono: 'Fira Code', 'Cascadia Code', Consolas, monospace;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --bg-page: #0b0f19;
+      --bg-surface: #111827;
+      --bg-elevated: #161f32;
+      --bg-code: #080b12;
+      --border: #1f2937;
+      --border-hover: #374151;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-gold: #eab308;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-violet: #a855f7;
+      --accent-crimson: #f43f5e;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
     }
 
     * {
@@ -32,198 +34,349 @@
     }
 
     body {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
       font-family: var(--font-sans);
       line-height: 1.6;
-      background-image:
-        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08), transparent 35%),
-        radial-gradient(circle at 85% 20%, rgba(234, 179, 8, 0.07), transparent 35%);
+      -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 1180px;
+    .wrapper {
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+      padding: 0 1.5rem 5rem;
     }
 
-    /* Header */
-    header {
-      text-align: center;
-      padding: 2.5rem 1rem 2rem;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 2rem;
-    }
-
-    .celestia-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      background: var(--gold-soft);
-      border: 1px solid rgba(234, 179, 8, 0.35);
-      color: var(--gold);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: 2.3rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.6rem;
-      background: linear-gradient(90deg, #ffffff, #cbd5e1, #eab308);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .subtitle {
-      color: var(--text-muted);
-      max-width: 720px;
-      margin: 0 auto 1.5rem;
-      font-size: 1rem;
-    }
-
-    .header-actions {
+    /* Top Navigation Bar */
+    .topbar {
       display: flex;
-      justify-content: center;
-      gap: 0.8rem;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+      gap: 1rem;
       flex-wrap: wrap;
     }
 
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      box-shadow: 0 0 12px var(--accent-gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.6rem 1.15rem;
+      padding: 0.55rem 1rem;
       border-radius: 8px;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      color: var(--text-main);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-primary);
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.18s ease;
     }
 
     .btn:hover {
-      border-color: var(--cyan);
-      transform: translateY(-1px);
+      border-color: var(--text-secondary);
+      background: var(--bg-elevated);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #0284c7, #2563eb);
-      border-color: #38bdf8;
-      color: #fff;
+      background: #f8fafc;
+      color: #0b0f19;
+      border-color: #f8fafc;
+    }
+
+    .btn-primary:hover {
+      background: #e2e8f0;
+      border-color: #e2e8f0;
     }
 
     .btn-danger {
-      background: var(--crimson-soft);
-      border-color: var(--crimson);
+      background: rgba(244, 63, 94, 0.12);
+      border-color: rgba(244, 63, 94, 0.4);
       color: #fda4af;
     }
 
     .btn-danger:hover {
-      background: var(--crimson);
+      background: var(--accent-crimson);
+      border-color: var(--accent-crimson);
       color: #fff;
     }
 
-    .btn-gold {
-      background: var(--gold-soft);
-      border-color: var(--gold);
-      color: #fde047;
+    .btn-accent {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: var(--accent-cyan);
     }
 
-    /* Four Shades Cards */
+    .btn-accent:hover {
+      background: var(--accent-cyan);
+      color: #0b0f19;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 3.25rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      background: rgba(234, 179, 8, 0.1);
+      border: 1px solid rgba(234, 179, 8, 0.25);
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 1.02rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Metrics Strip */
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .metrics-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+
+    .metric-val {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+    }
+
+    .metric-lbl {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    /* Section Heading */
+    .section-head {
+      margin-bottom: 1.25rem;
+    }
+
+    .section-head h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .section-head p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    /* Four Shades Cards with Image Banners */
     .shades-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2.2rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.15rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 960px) {
+      .shades-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .shades-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .shade-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.2rem;
-      transition: border-color 0.2s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .shade-card:hover {
-      border-color: var(--gold);
+      transform: translateY(-3px);
+      border-color: var(--border-hover);
     }
 
-    .shade-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
+    .shade-banner {
+      position: relative;
+      width: 100%;
+      height: 155px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
     }
 
-    .shade-name {
+    .shade-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .shade-badge {
+      position: absolute;
+      top: 0.65rem;
+      right: 0.65rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      font-size: 1.05rem;
-      color: #fff;
-    }
-
-    .shade-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.2rem 0.55rem;
+      padding: 0.22rem 0.6rem;
       border-radius: 6px;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+      backdrop-filter: blur(8px);
     }
 
-    .tag-life { background: var(--emerald-soft); color: var(--emerald); }
-    .tag-time { background: var(--cyan-soft); color: var(--cyan); }
-    .tag-space { background: rgba(168, 85, 247, 0.16); color: #d8b4fe; }
-    .tag-death { background: var(--crimson-soft); color: #fda4af; }
+    .badge-life { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .badge-time { background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4); }
+    .badge-space { background: rgba(168, 85, 247, 0.2); color: #e9d5ff; border: 1px solid rgba(168, 85, 247, 0.4); }
+    .badge-death { background: rgba(244, 63, 94, 0.22); color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.4); }
 
-    .shade-card p {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      margin-bottom: 0.65rem;
-    }
-
-    .shade-module {
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: var(--gold);
-    }
-
-    /* Tabs */
-    .tabs {
+    .shade-body {
+      padding: 1.15rem;
       display: flex;
-      gap: 0.5rem;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 1.5rem;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .shade-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      color: var(--text-primary);
+    }
+
+    .shade-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .shade-desc code {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    .shade-footer {
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--accent-gold);
+      word-break: break-all;
+    }
+
+    /* Interactive Sandbox Container */
+    .sandbox {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+    }
+
+    .sandbox-tabs {
+      display: flex;
+      background: #0d1320;
+      border-bottom: 1px solid var(--border);
       overflow-x: auto;
-      padding-bottom: 0.5rem;
     }
 
     .tab-btn {
+      padding: 0.95rem 1.35rem;
       background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-muted);
-      padding: 0.6rem 1.1rem;
-      border-radius: 8px;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
       font-weight: 600;
-      font-size: 0.9rem;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s;
+      transition: all 0.18s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.02);
     }
 
     .tab-btn.active {
-      background: var(--bg-card);
-      border-color: var(--cyan);
-      color: var(--cyan);
+      color: var(--accent-cyan);
+      border-bottom-color: var(--accent-cyan);
+      background: var(--bg-surface);
+    }
+
+    .sandbox-content {
+      padding: 1.75rem;
     }
 
     .tab-panel {
@@ -232,7 +385,7 @@
 
     .tab-panel.active {
       display: block;
-      animation: fadeIn 0.25s ease;
+      animation: fadeIn 0.2s ease;
     }
 
     @keyframes fadeIn {
@@ -240,387 +393,555 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Workspace Panels */
-    .panel-box {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .panel-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .panel-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .split-grid {
+    /* Fixed 2-Column Code Grid (Prevents Overflow) */
+    .code-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.25rem;
+      margin-top: 1.25rem;
     }
 
     @media (max-width: 860px) {
-      .split-grid {
-        grid-template-columns: 1fr;
+      .code-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    pre {
-      background: #070a12;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: #e2e8f0;
-      overflow-x: auto;
-      max-height: 360px;
+    .code-card {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
     }
 
-    .code-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin-bottom: 0.45rem;
+    .code-header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      background: #0d1320;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
     }
 
-    /* Record Selector Pills */
-    .record-selector {
+    .code-header span.tag {
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+      font-size: 0.72rem;
+    }
+
+    pre {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 0 0 8px 8px;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: #e2e8f0;
+      overflow-x: auto;
+      max-height: 350px;
+      margin: 0;
+    }
+
+    pre.standalone {
+      border-radius: 8px;
+    }
+
+    /* Pills & Controls */
+    .control-bar {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.55rem;
       flex-wrap: wrap;
+      align-items: center;
       margin-bottom: 1rem;
     }
 
-    .rec-pill {
+    .pill {
       padding: 0.45rem 0.85rem;
       border-radius: 6px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      color: var(--text-muted);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
       font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.15s ease;
     }
 
-    .rec-pill.active {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: var(--gold-soft);
+    .pill:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .pill.active {
+      background: rgba(234, 179, 8, 0.14);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
     }
 
     /* Status Badges */
-    .badge {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.22rem 0.65rem;
       border-radius: 6px;
       font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
 
-    .badge-pass { background: var(--emerald-soft); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.4); }
-    .badge-fail { background: var(--crimson-soft); color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.4); }
+    .chip-ok {
+      background: rgba(16, 185, 129, 0.14);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
 
-    /* Table */
+    .chip-err {
+      background: rgba(244, 63, 94, 0.14);
+      color: #fda4af;
+      border: 1px solid rgba(244, 63, 94, 0.35);
+    }
+
+    /* Responsive Table */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.86rem;
-      margin-top: 0.8rem;
+      font-size: 0.84rem;
     }
 
     th, td {
       text-align: left;
-      padding: 0.75rem;
-      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
     }
 
     th {
-      color: var(--text-muted);
+      background: #0d1320;
+      color: var(--text-secondary);
       font-weight: 600;
-      background: rgba(15, 23, 42, 0.6);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td code {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #cbd5e1;
     }
 
     /* Benchmark Bars */
-    .metric-row {
-      margin-bottom: 1.1rem;
+    .bench-card {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.2rem;
     }
 
-    .metric-header {
+    .bar-group-head {
       display: flex;
       justify-content: space-between;
-      font-size: 0.85rem;
-      margin-bottom: 0.35rem;
+      font-size: 0.84rem;
+      margin-bottom: 0.4rem;
     }
 
     .bar-track {
-      width: 100%;
-      height: 12px;
-      background: #070a12;
+      height: 10px;
+      background: var(--bg-elevated);
       border-radius: 999px;
       overflow: hidden;
-      border: 1px solid var(--border-color);
     }
 
-    .bar-fill-sql {
+    .bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #0284c7, #38bdf8);
       border-radius: 999px;
-      transition: width 0.6s ease;
+      transition: width 0.5s ease;
     }
 
-    .bar-fill-sparql {
-      height: 100%;
-      background: linear-gradient(90deg, #ca8a04, #eab308);
-      border-radius: 999px;
-      transition: width 0.6s ease;
+    /* Standards Summary Section */
+    .standards-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
     }
 
     footer {
       text-align: center;
-      margin-top: 3rem;
+      margin-top: 3.5rem;
       padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
+      border-top: 1px solid var(--border);
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.84rem;
     }
 
     footer a {
-      color: var(--cyan);
+      color: var(--text-secondary);
       text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent-cyan);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="celestia-pill">🏛️ Heavenly Principles Data Governance & QA Suite</div>
-      <h1>FourShades-BIBFRAME</h1>
-      <p class="subtitle">
-        Interactive simulator demonstrating MARC21-to-BIBFRAME 2.0 Semantic ETL, W3C SHACL Quality Gates,
-        SPARQL vs. Relational SQL Parity, and Asynchronous HTTP 410 Link-Rot Tombstoning.
-      </p>
-      <div class="header-actions">
-        <a class="btn btn-primary" href="https://github.com/erlandfauzan/FourShades-BIBFRAME" target="_blank">
-          View GitHub Repository
-        </a>
-        <a class="btn" href="https://github.com/erlandfauzan/FourShades-BIBFRAME/actions" target="_blank">
-          CI/CD Pipeline Status
-        </a>
+  <div class="wrapper">
+    <!-- Topbar -->
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="brand-dot"></span>
+        <span>FourShades-BIBFRAME</span>
+      </a>
+      <div class="nav-links">
+        <a class="btn" href="https://github.com/erlandfauzan/FourShades-BIBFRAME/actions" target="_blank">CI/CD Pipeline</a>
+        <a class="btn btn-primary" href="https://github.com/erlandfauzan/FourShades-BIBFRAME" target="_blank">GitHub Repository &rarr;</a>
       </div>
     </header>
 
-    <!-- Four Shades Architecture Overview -->
+    <!-- Hero -->
+    <section class="hero">
+      <div class="eyebrow">Heavenly Principles Data Governance &amp; QA Suite</div>
+      <h1>Semantic Bibliographic ETL &amp; Dual-Engine Benchmark</h1>
+      <p>
+        An interactive observatory demonstrating MARC21-to-BIBFRAME 2.0 RDF transformation,
+        W3C SHACL quality gates, SPARQL vs. SQLite parity testing, and HTTP 410 link-rot tombstoning.
+      </p>
+    </section>
+
+    <!-- Quick Telemetry Strip -->
+    <section class="metrics-strip">
+      <div class="metric-card">
+        <div class="metric-val">4 &rarr; 3</div>
+        <div class="metric-lbl">MARC Records Merged to Works</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">6 / 6</div>
+        <div class="metric-lbl">Pytest &amp; SHACL Suite Passing</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">100%</div>
+        <div class="metric-lbl">SPARQL &harr; SQL Query Parity</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">HTTP 410</div>
+        <div class="metric-lbl">Automated Dead-Link Tombstone</div>
+      </div>
+    </section>
+
+    <!-- Four Shades Architecture Cards (With Image Banner Slots) -->
+    <div class="section-head">
+      <h2>Architectural Modules (The Four Shades)</h2>
+      <p>Each module isolates a distinct data-engineering and quality-assurance responsibility.</p>
+    </div>
+
     <section class="shades-grid">
-      <div class="shade-card">
-        <div class="shade-header">
-          <span class="shade-name">Naberius</span>
-          <span class="shade-tag tag-life">Shade of Life</span>
+      <!-- CARD 1: NABERIUS -->
+      <article class="shade-card">
+        <div class="shade-banner">
+          <!-- [1] GANTI LINK FOTO NABERIUS DI BAWAH INI -->
+          <img
+            src="https://genshin-impact.fandom.com/wiki/Naberius?file=Naberius+Illustration.png"
+            alt="Naberius - Shade of Life"
+            onerror="this.src='https://genshin-impact.fandom.com/wiki/Naberius?file=Naberius+Illustration.png'"
+          />
+          <span class="shade-badge badge-life">Life</span>
         </div>
-        <p>Transforms flat MARCXML records into interconnected <code>bf:Work</code>, <code>bf:Instance</code>, and <code>bf:Item</code> RDF triples.</p>
-        <div class="shade-module">src/naberius_etl/converter.py</div>
-      </div>
-
-      <div class="shade-card">
-        <div class="shade-header">
-          <span class="shade-name">Istaroth</span>
-          <span class="shade-tag tag-time">Shade of Time</span>
-        </div>
-        <p>Deduplicates multilingual editions via deterministic SHA-256 URIs and attaches W3C <code>PROV-O</code> timestamps.</p>
-        <div class="shade-module">src/istaroth_lineage/lineage.py</div>
-      </div>
-
-      <div class="shade-card">
-        <div class="shade-header">
-          <span class="shade-name">Asmoday</span>
-          <span class="shade-tag tag-space">Shade of Space</span>
-        </div>
-        <p>Exposes identical datasets across SPARQL 1.1 and SQLite engines for shadow parity and load benchmarking.</p>
-        <div class="shade-module">src/asmoday_gateway/app.py</div>
-      </div>
-
-      <div class="shade-card">
-        <div class="shade-header">
-          <span class="shade-name">Ronova</span>
-          <span class="shade-tag tag-death">Shade of Death</span>
-        </div>
-        <p>Probes external <code>bf:electronicLocator</code> URIs and enforces RFC 9110 <code>HTTP 410 Gone</code> tombstones.</p>
-        <div class="shade-module">src/ronova_reaper/reaper.py</div>
-      </div>
-    </section>
-
-    <!-- Navigation Tabs -->
-    <nav class="tabs">
-      <button class="tab-btn active" onclick="switchTab('etl', this)">1. Naberius & Istaroth ETL</button>
-      <button class="tab-btn" onclick="switchTab('shacl', this)">2. SHACL Quality Gate</button>
-      <button class="tab-btn" onclick="switchTab('ronova', this)">3. Asmoday API & Ronova 410</button>
-      <button class="tab-btn" onclick="switchTab('benchmark', this)">4. k6 Load Benchmark</button>
-    </nav>
-
-    <!-- TAB 1: ETL & LINEAGE -->
-    <section id="tab-etl" class="tab-panel active">
-      <div class="panel-box">
-        <div class="panel-title">Semantic MARCXML &rarr; BIBFRAME 2.0 Transformation</div>
-        <p class="panel-desc">
-          Select a bibliographic record from <code>data/raw_marc/world_literature.xml</code> to inspect how
-          <strong>Naberius</strong> maps MARC21 tags into RDF triples and how <strong>Istaroth</strong> unifies
-          both editions of Kawabata's <em>Yukiguni</em> under one canonical <code>bf:Work</code> URI.
-        </p>
-
-        <div class="record-selector">
-          <button class="rec-pill active" onclick="selectRecord('loc-jpn-001', this)">loc-jpn-001 (Yukiguni - JPN)</button>
-          <button class="rec-pill" onclick="selectRecord('loc-jpn-002', this)">loc-jpn-002 (Snow Country - ENG)</button>
-          <button class="rec-pill" onclick="selectRecord('loc-ger-003', this)">loc-ger-003 (Die Verwandlung - GER)</button>
-          <button class="rec-pill" onclick="selectRecord('loc-usa-004', this)">loc-usa-004 (Old Man &amp; Sea - ENG)</button>
-        </div>
-
-        <div class="split-grid">
+        <div class="shade-body">
           <div>
-            <div class="code-label">
-              <span>Input: MARC21 XML Record</span>
-              <span id="marc-ddc-badge" style="color: var(--cyan);">DDC: 895.6344</span>
-            </div>
-            <pre id="marc-preview"></pre>
+            <div class="shade-title">Naberius</div>
+            <p class="shade-desc">
+              Transforms flat MARCXML records into linked <code>bf:Work</code>, <code>bf:Instance</code>, and <code>bf:Item</code> RDF triples.
+            </p>
           </div>
+          <div class="shade-footer">src/naberius_etl/converter.py</div>
+        </div>
+      </article>
+
+      <!-- CARD 2: ISTAROTH -->
+      <article class="shade-card">
+        <div class="shade-banner">
+          <!-- [2] GANTI LINK FOTO ISTAROTH DI BAWAH INI -->
+          <img
+            src="https://genshin-impact.fandom.com/wiki/Istaroth?file=Istaroth+Illustration.png"
+            alt="Istaroth - Shade of Time"
+            onerror="this.src='https://genshin-impact.fandom.com/wiki/Istaroth?file=Istaroth+Illustration.png'"
+          />
+          <span class="shade-badge badge-time">Time</span>
+        </div>
+        <div class="shade-body">
           <div>
-            <div class="code-label">
-              <span>Output: BIBFRAME 2.0 Turtle (.ttl)</span>
-              <span id="work-uri-badge" style="color: var(--gold);">Work Hash: Shared</span>
+            <div class="shade-title">Istaroth</div>
+            <p class="shade-desc">
+              Deduplicates multilingual editions via deterministic SHA-256 URIs and attaches W3C <code>PROV-O</code> audit trails.
+            </p>
+          </div>
+          <div class="shade-footer">src/istaroth_lineage/lineage.py</div>
+        </div>
+      </article>
+
+      <!-- CARD 3: ASMODAY -->
+      <article class="shade-card">
+        <div class="shade-banner">
+          <!-- [3] GANTI LINK FOTO ASMODAY DI BAWAH INI -->
+          <img
+            src="https://genshin-impact.fandom.com/wiki/Asmoday?file=Asmoday+Illustration.png"
+            alt="Asmoday - Shade of Space"
+            onerror="this.src='https://genshin-impact.fandom.com/wiki/Asmoday?file=Asmoday+Illustration.png'"
+          />
+          <span class="shade-badge badge-space">Space</span>
+        </div>
+        <div class="shade-body">
+          <div>
+            <div class="shade-title">Asmoday</div>
+            <p class="shade-desc">
+              Exposes identical bibliographic datasets across <code>SPARQL 1.1</code> and <code>SQLite</code> engines for parity &amp; load testing.
+            </p>
+          </div>
+          <div class="shade-footer">src/asmoday_gateway/app.py</div>
+        </div>
+      </article>
+
+      <!-- CARD 4: RONOVA -->
+      <article class="shade-card">
+        <div class="shade-banner">
+          <!-- [4] GANTI LINK FOTO RONOVA DI BAWAH INI -->
+          <img
+            src="https://genshin-impact.fandom.com/wiki/Ronova?file=Ronova+Illustration.png"
+            alt="Ronova - Shade of Death"
+            onerror="this.src='https://genshin-impact.fandom.com/wiki/Ronova?file=Ronova+Illustration.png'"
+          />
+          <span class="shade-badge badge-death">Death</span>
+        </div>
+        <div class="shade-body">
+          <div>
+            <div class="shade-title">Ronova</div>
+            <p class="shade-desc">
+              Concurrently probes external <code>bf:electronicLocator</code> URIs and tombstones dead links with <code>HTTP 410 Gone</code>.
+            </p>
+          </div>
+          <div class="shade-footer">src/ronova_reaper/reaper.py</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Interactive Sandbox -->
+    <div class="section-head">
+      <h2>Interactive Pipeline &amp; QA Simulator</h2>
+      <p>Test each layer of the repository directly in your browser.</p>
+    </div>
+
+    <section class="sandbox">
+      <nav class="sandbox-tabs">
+        <button class="tab-btn active" onclick="switchTab('etl', this)">1. Naberius &amp; Istaroth ETL</button>
+        <button class="tab-btn" onclick="switchTab('shacl', this)">2. SHACL Quality Gate</button>
+        <button class="tab-btn" onclick="switchTab('ronova', this)">3. Asmoday API &amp; Ronova 410</button>
+        <button class="tab-btn" onclick="switchTab('benchmark', this)">4. k6 Load Benchmark</button>
+      </nav>
+
+      <div class="sandbox-content">
+        <!-- TAB 1: ETL -->
+        <div id="tab-etl" class="tab-panel active">
+          <p class="shade-desc" style="margin-bottom: 1rem;">
+            Inspect how <strong>Naberius</strong> converts <code>data/raw_marc/world_literature.xml</code> into BIBFRAME 2.0 Turtle (<code>.ttl</code>),
+            and how <strong>Istaroth</strong> unifies both editions of Yasunari Kawabata's <em>Yukiguni</em> under one canonical <code>bf:Work</code> URI.
+          </p>
+
+          <div class="control-bar">
+            <button class="pill active" onclick="selectRecord('loc-jpn-001', this)">loc-jpn-001 (Yukiguni &bull; JPN)</button>
+            <button class="pill" onclick="selectRecord('loc-jpn-002', this)">loc-jpn-002 (Snow Country &bull; ENG)</button>
+            <button class="pill" onclick="selectRecord('loc-ger-003', this)">loc-ger-003 (Die Verwandlung &bull; GER)</button>
+            <button class="pill" onclick="selectRecord('loc-usa-004', this)">loc-usa-004 (Old Man &amp; Sea &bull; ENG)</button>
+          </div>
+
+          <div class="code-grid">
+            <div class="code-card">
+              <div class="code-header">
+                <span>INPUT: MARC21 XML RECORD</span>
+                <span class="tag" id="marc-ddc-badge">DDC: 895.6344</span>
+              </div>
+              <pre id="marc-preview"></pre>
             </div>
-            <pre id="ttl-preview"></pre>
+            <div class="code-card">
+              <div class="code-header">
+                <span>OUTPUT: BIBFRAME 2.0 TURTLE (.TTL)</span>
+                <span class="tag" id="work-uri-badge">Shared Work URI</span>
+              </div>
+              <pre id="ttl-preview"></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: SHACL -->
+        <div id="tab-shacl" class="tab-panel">
+          <p class="shade-desc" style="margin-bottom: 1rem;">
+            Simulate <code>pytest tests/shacl/test_graph_quality.py</code> using <code>pySHACL</code> against <code>data/shapes/bibframe_shapes.ttl</code>.
+          </p>
+
+          <div class="control-bar">
+            <button class="btn btn-accent" onclick="runShaclTest('valid')">Validate World Literature Graph</button>
+            <button class="btn btn-danger" onclick="runShaclTest('orphan')">Inject Orphaned bf:Instance</button>
+            <button class="btn btn-danger" onclick="runShaclTest('lang')">Inject Invalid Language Code</button>
+          </div>
+
+          <div style="margin-bottom: 0.75rem;">
+            Quality Gate Verdict: <span id="shacl-status" class="status-chip chip-ok">CONFORMS: TRUE</span>
+          </div>
+          <pre id="shacl-output" class="standalone"></pre>
+        </div>
+
+        <!-- TAB 3: RONOVA & ASMODAY -->
+        <div id="tab-ronova" class="tab-panel">
+          <p class="shade-desc" style="margin-bottom: 1rem;">
+            Verify shadow parity between <strong>SPARQL 1.1</strong> and <strong>SQLite</strong>, then trigger <strong>Ronova</strong> to audit
+            external links and transition the broken URL on <code>loc-jpn-002</code> into an <strong>HTTP 410 Gone</strong> tombstone.
+          </p>
+
+          <div class="control-bar">
+            <button class="btn btn-danger" onclick="triggerRonovaReaper()">Trigger Ronova Reaper (POST /api/v1/ronova/reap)</button>
+            <button class="btn" onclick="resetRonovaState()">Reset State</button>
+            <span class="status-chip chip-ok">SPARQL &harr; SQL Parity: 100% Match</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Instance ID</th>
+                  <th>Title &amp; Language</th>
+                  <th>Electronic Locator (MARC 856$u)</th>
+                  <th>Status</th>
+                  <th>Inspect</th>
+                </tr>
+              </thead>
+              <tbody id="ronova-table-body"></tbody>
+            </table>
+          </div>
+
+          <div class="code-card" style="margin-top: 1.25rem;">
+            <div class="code-header">
+              <span>LIVE RESPONSE: <code id="inspected-endpoint">GET /api/v1/instances/loc-jpn-002</code></span>
+              <span id="inspected-http-code" class="status-chip chip-ok">HTTP 200 OK</span>
+            </div>
+            <pre id="api-response-preview"></pre>
+          </div>
+        </div>
+
+        <!-- TAB 4: BENCHMARK -->
+        <div id="tab-benchmark" class="tab-panel">
+          <p class="shade-desc" style="margin-bottom: 1rem;">
+            Latency telemetry from <code>benchmarks/k6/dual_engine_benchmark.js</code> ramping up to <strong>50 Virtual Users (VUs)</strong>.
+          </p>
+
+          <div class="control-bar">
+            <button class="btn btn-accent" onclick="simulateBenchmarkRun()">Re-Run k6 Load Simulation (50 VUs)</button>
+          </div>
+
+          <div class="code-grid">
+            <div class="bench-card">
+              <div>
+                <div class="bar-group-head">
+                  <span>Relational SQLite (<code>/api/v1/sql/works</code>)</span>
+                  <strong id="sql-p95-val" style="color: var(--accent-cyan);">18.4 ms</strong>
+                </div>
+                <div class="bar-track">
+                  <div id="sql-p95-bar" class="bar-fill" style="width: 24%; background: var(--accent-cyan);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bar-group-head">
+                  <span>RDF SPARQL 1.1 (<code>/api/v1/graph/works</code>)</span>
+                  <strong id="sparql-p95-val" style="color: var(--accent-gold);">46.2 ms</strong>
+                </div>
+                <div class="bar-track">
+                  <div id="sparql-p95-bar" class="bar-fill" style="width: 58%; background: var(--accent-gold);"></div>
+                </div>
+              </div>
+
+              <div class="bar-group-head" style="margin-bottom: 0; padding-top: 0.5rem; border-top: 1px solid var(--border);">
+                <span style="color: var(--text-secondary);">SLA Threshold (<code>p95 &lt; 250ms</code>)</span>
+                <span class="status-chip chip-ok">PASSED (0.00% Errors)</span>
+              </div>
+            </div>
+
+            <div class="code-card">
+              <div class="code-header">
+                <span>K6 EXECUTION SUMMARY</span>
+                <span class="tag">50 VUs &bull; 40s</span>
+              </div>
+              <pre id="k6-summary-output"></pre>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TAB 2: SHACL QUALITY GATE -->
-    <section id="tab-shacl" class="tab-panel">
-      <div class="panel-box">
-        <div class="panel-title">Heavenly Principles SHACL Validation Gate</div>
-        <p class="panel-desc">
-          Simulate <code>pytest tests/shacl/test_graph_quality.py</code> using <code>pySHACL</code> against
-          <code>data/shapes/bibframe_shapes.ttl</code>. Test how the quality gate accepts compliant graphs and
-          blocks corrupted payloads before CI/CD deployment.
-        </p>
+    <!-- Standards & Bibliographic Mapping Reference -->
+    <div class="section-head">
+      <h2>Library &amp; Semantic Web Standards Matrix</h2>
+      <p>Mapping between legacy MARC21 fields, BIBFRAME 2.0 ontology classes, and QA enforcement rules.</p>
+    </div>
 
-        <div class="header-actions" style="justify-content: flex-start; margin-bottom: 1.2rem;">
-          <button class="btn btn-primary" onclick="runShaclTest('valid')">Validate World Literature Graph</button>
-          <button class="btn btn-danger" onclick="runShaclTest('orphan')">Inject Orphaned bf:Instance</button>
-          <button class="btn btn-danger" onclick="runShaclTest('lang')">Inject Invalid Language Code</button>
-        </div>
-
-        <div style="margin-bottom: 0.75rem;">
-          Validation Result: <span id="shacl-status" class="badge badge-pass">CONFORMS: TRUE (6/6 Assertions Passed)</span>
-        </div>
-        <pre id="shacl-output"></pre>
-      </div>
-    </section>
-
-    <!-- TAB 3: ASMODAY & RONOVA -->
-    <section id="tab-ronova" class="tab-panel">
-      <div class="panel-box">
-        <div class="panel-title">Asmoday Dual-Engine Parity &amp; Ronova Link-Rot Reaper</div>
-        <p class="panel-desc">
-          Compare live responses between <strong>SPARQL 1.1</strong> and <strong>SQLite</strong>, then trigger
-          <strong>Ronova</strong> (<code>POST /api/v1/ronova/reap</code>) to audit external locators and transition
-          the broken URL on <code>loc-jpn-002</code> into an audited <strong>HTTP 410 Gone</strong> tombstone.
-        </p>
-
-        <div class="header-actions" style="justify-content: flex-start; margin-bottom: 1rem;">
-          <button class="btn btn-danger" onclick="triggerRonovaReaper()">⚡ Trigger Ronova Reaper (POST /api/v1/ronova/reap)</button>
-          <button class="btn" onclick="resetRonovaState()">Reset Catalog State</button>
-          <span class="badge badge-pass" style="align-self: center;">SPARQL &harr; SQL Parity: 100% IDENTICAL</span>
-        </div>
-
+    <section class="standards-box">
+      <div class="table-wrap" style="margin-top: 0;">
         <table>
           <thead>
             <tr>
-              <th>Instance ID</th>
-              <th>Title &amp; Language</th>
-              <th>Electronic Locator (MARC 856$u)</th>
-              <th>HTTP Status</th>
-              <th>Inspect API</th>
+              <th>MARC21 Field</th>
+              <th>BIBFRAME 2.0 Target</th>
+              <th>Responsible Shade</th>
+              <th>Automated QA / Governance Rule</th>
             </tr>
           </thead>
-          <tbody id="ronova-table-body"></tbody>
+          <tbody>
+            <tr>
+              <td><code>240$a</code> + <code>100$a</code></td>
+              <td><code>bf:Work</code> + <code>bf:Agent</code></td>
+              <td><strong>Istaroth</strong> (Time)</td>
+              <td>Deterministic SHA-256 URI deduplication across translations + W3C <code>PROV-O</code> timestamp</td>
+            </tr>
+            <tr>
+              <td><code>245$a/$b</code> + <code>008[35:38]</code></td>
+              <td><code>bf:Instance</code> + <code>bf:language</code></td>
+              <td><strong>Naberius</strong> (Life)</td>
+              <td>SHACL <code>minCount 1</code> parent Work link + strict 3-letter ISO 639-2 regex validation</td>
+            </tr>
+            <tr>
+              <td><code>082$a</code> + <code>650$a</code></td>
+              <td><code>bf:ClassificationDdc</code> + <code>bf:Topic</code></td>
+              <td><strong>Asmoday</strong> (Space)</td>
+              <td>100% JSON response parity verified between <code>SPARQL 1.1</code> and <code>SQLite JOIN</code></td>
+            </tr>
+            <tr>
+              <td><code>856$u</code></td>
+              <td><code>bf:electronicLocator</code> + <code>bf:status</code></td>
+              <td><strong>Ronova</strong> (Death)</td>
+              <td>Async HTTP health probe; dead links return <code>HTTP 410 Gone</code> with <code>prov:invalidatedAtTime</code></td>
+            </tr>
+          </tbody>
         </table>
-
-        <div style="margin-top: 1.25rem;">
-          <div class="code-label">
-            <span>Live Endpoint Response: <code id="inspected-endpoint">GET /api/v1/instances/loc-jpn-002</code></span>
-            <span id="inspected-http-code" class="badge badge-pass">HTTP 200 OK</span>
-          </div>
-          <pre id="api-response-preview"></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 4: K6 BENCHMARK -->
-    <section id="tab-benchmark" class="tab-panel">
-      <div class="panel-box">
-        <div class="panel-title">k6 Concurrent Load Benchmark (SPARQL vs. SQLite)</div>
-        <p class="panel-desc">
-          Performance telemetry from <code>benchmarks/k6/dual_engine_benchmark.js</code> ramping up to
-          <strong>50 Virtual Users (VUs)</strong> querying hierarchical <code>Work &rarr; Instance &rarr; Subject</code> structures.
-        </p>
-
-        <div class="header-actions" style="justify-content: flex-start; margin-bottom: 1.4rem;">
-          <button class="btn btn-gold" onclick="simulateBenchmarkRun()">▶ Re-Run k6 Load Simulation (50 VUs)</button>
-        </div>
-
-        <div class="split-grid">
-          <div class="panel-box" style="margin-bottom: 0; background: #0d1322;">
-            <div class="code-label"><span>p95 Latency Comparison (Lower is Better)</span></div>
-
-            <div class="metric-row">
-              <div class="metric-header">
-                <span>Relational SQLite (<code>/api/v1/sql/works</code>)</span>
-                <strong id="sql-p95-val" style="color: var(--cyan);">18.4 ms</strong>
-              </div>
-              <div class="bar-track">
-                <div id="sql-p95-bar" class="bar-fill-sql" style="width: 24%;"></div>
-              </div>
-            </div>
-
-            <div class="metric-row">
-              <div class="metric-header">
-                <span>RDF SPARQL 1.1 (<code>/api/v1/graph/works</code>)</span>
-                <strong id="sparql-p95-val" style="color: var(--gold);">46.2 ms</strong>
-              </div>
-              <div class="bar-track">
-                <div id="sparql-p95-bar" class="bar-fill-sparql" style="width: 58%;"></div>
-              </div>
-            </div>
-
-            <div class="metric-row" style="margin-bottom: 0;">
-              <div class="metric-header">
-                <span>SLA Threshold Target (<code>p(95) &lt; 250ms</code>)</span>
-                <span class="badge badge-pass">PASSED (0.00% Errors)</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="code-label"><span>k6 Summary Output</span></div>
-            <pre id="k6-summary-output"></pre>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -633,8 +954,8 @@
   <script>
     const RECORDS = {
       "loc-jpn-001": {
-        ddc: "895.6344",
-        workHash: "celestia:work/8a4f9c2e1b04 (Shared with loc-jpn-002)",
+        ddc: "DDC: 895.6344",
+        workHash: "work/8a4f9c2e1b04 (Shared)",
         marc: `<record>
   <controlfield tag="001">loc-jpn-001</controlfield>
   <controlfield tag="008">260115s1948    ja            000 0 jpn d</controlfield>
@@ -664,8 +985,8 @@ celestia:instance/loc-jpn-001 a bf:Instance ;
     prov:wasDerivedFrom "MARC21:loc-jpn-001" .`
       },
       "loc-jpn-002": {
-        ddc: "895.6344",
-        workHash: "celestia:work/8a4f9c2e1b04 (Merged under Yukiguni)",
+        ddc: "DDC: 895.6344",
+        workHash: "work/8a4f9c2e1b04 (Merged)",
         marc: `<record>
   <controlfield tag="001">loc-jpn-002</controlfield>
   <controlfield tag="008">260210s1956    nyu           000 0 eng d</controlfield>
@@ -691,8 +1012,8 @@ celestia:instance/loc-jpn-002 a bf:Instance ;
     prov:wasDerivedFrom "MARC21:loc-jpn-002" .`
       },
       "loc-ger-003": {
-        ddc: "833.912",
-        workHash: "celestia:work/3f71d09a4c18 (Unique Work)",
+        ddc: "DDC: 833.912",
+        workHash: "work/3f71d09a4c18 (Unique)",
         marc: `<record>
   <controlfield tag="001">loc-ger-003</controlfield>
   <controlfield tag="008">260305s1915    gw            000 0 ger d</controlfield>
@@ -719,8 +1040,8 @@ celestia:instance/loc-ger-003 a bf:Instance ;
     bf:electronicLocator <https://example.org/catalog/kafka-die-verwandlung> .`
       },
       "loc-usa-004": {
-        ddc: "813.52",
-        workHash: "celestia:work/9c20e5b71d63 (Unique Work)",
+        ddc: "DDC: 813.52",
+        workHash: "work/9c20e5b71d63 (Unique)",
         marc: `<record>
   <controlfield tag="001">loc-usa-004</controlfield>
   <controlfield tag="008">260320s1952    nyu           000 0 eng d</controlfield>
@@ -755,10 +1076,10 @@ celestia:instance/loc-usa-004 a bf:Instance ;
     }
 
     function selectRecord(recId, btn) {
-      document.querySelectorAll('.rec-pill').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
       if (btn) btn.classList.add('active');
       const data = RECORDS[recId];
-      document.getElementById('marc-ddc-badge').textContent = 'DDC: ' + data.ddc;
+      document.getElementById('marc-ddc-badge').textContent = data.ddc;
       document.getElementById('work-uri-badge').textContent = data.workHash;
       document.getElementById('marc-preview').textContent = data.marc;
       document.getElementById('ttl-preview').textContent = data.ttl;
@@ -769,8 +1090,8 @@ celestia:instance/loc-usa-004 a bf:Instance ;
       const outEl = document.getElementById('shacl-output');
 
       if (mode === 'valid') {
-        statusEl.className = 'badge badge-pass';
-        statusEl.textContent = 'CONFORMS: TRUE (CI/CD Quality Gate Passed)';
+        statusEl.className = 'status-chip chip-ok';
+        statusEl.textContent = 'CONFORMS: TRUE (Quality Gate Passed)';
         outEl.textContent = `Validation Report (pySHACL v0.25)
 Conforms: True
 Checked Shapes: celestia:InstanceShape, celestia:WorkShape
@@ -779,24 +1100,24 @@ Violations: 0
 
 All bibliographic entities satisfy Heavenly Principles ontological constraints.`;
       } else if (mode === 'orphan') {
-        statusEl.className = 'badge badge-fail';
-        statusEl.textContent = 'CONFORMS: FALSE (Build Rejected by Quality Gate)';
+        statusEl.className = 'status-chip chip-err';
+        statusEl.textContent = 'CONFORMS: FALSE (Build Rejected)';
         outEl.textContent = `Validation Report (pySHACL v0.25)
 Conforms: False
 Results (1):
-Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+Constraint Violation in MinCountConstraintComponent:
   Severity: sh:Violation
   Source Shape: celestia:InstanceShape
   Focus Node: <https://celestia.teyvat.org/bibframe/instance/corrupt-record-999>
   Result Path: bf:instanceOf
   Message: "Heavenly Principles Violation: bf:Instance cannot be orphaned without a parent bf:Work!"`;
       } else {
-        statusEl.className = 'badge badge-fail';
-        statusEl.textContent = 'CONFORMS: FALSE (Build Rejected by Quality Gate)';
+        statusEl.className = 'status-chip chip-err';
+        statusEl.textContent = 'CONFORMS: FALSE (Build Rejected)';
         outEl.textContent = `Validation Report (pySHACL v0.25)
 Conforms: False
 Results (1):
-Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#PatternConstraintComponent):
+Constraint Violation in PatternConstraintComponent:
   Severity: sh:Violation
   Source Shape: celestia:InstanceShape
   Focus Node: <https://celestia.teyvat.org/bibframe/instance/corrupt-record-999>
@@ -819,15 +1140,15 @@ Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#P
       tbody.innerHTML = INSTANCES.map(inst => {
         const deprecated = isReaped && inst.dead;
         const badge = deprecated
-          ? `<span class="badge badge-fail">410 GONE (deprecated)</span>`
-          : `<span class="badge badge-pass">200 OK (active)</span>`;
+          ? `<span class="status-chip chip-err">410 GONE</span>`
+          : `<span class="status-chip chip-ok">200 OK</span>`;
         return `
           <tr>
             <td><code>${inst.id}</code></td>
             <td>${inst.title}</td>
             <td><code>${inst.url}</code></td>
             <td>${badge}</td>
-            <td><button class="btn" style="padding:0.3rem 0.65rem;font-size:0.78rem;" onclick="inspectInstance('${inst.id}')">GET</button></td>
+            <td><button class="btn" style="padding:0.28rem 0.65rem;font-size:0.76rem;" onclick="inspectInstance('${inst.id}')">GET</button></td>
           </tr>
         `;
       }).join('');
@@ -841,7 +1162,7 @@ Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#P
       const pre = document.getElementById('api-response-preview');
 
       if (deprecated) {
-        badge.className = 'badge badge-fail';
+        badge.className = 'status-chip chip-err';
         badge.textContent = 'HTTP 410 Gone';
         pre.textContent = JSON.stringify({
           error: "Gone",
@@ -850,10 +1171,10 @@ Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#P
           title: inst.title,
           status: "deprecated",
           reason: "HTTP 404",
-          invalidated_at: "2026-11-23T08:10:00+00:00"
+          invalidated_at: "2026-11-23T10:30:00+00:00"
         }, null, 2);
       } else {
-        badge.className = 'badge badge-pass';
+        badge.className = 'status-chip chip-ok';
         badge.textContent = 'HTTP 200 OK';
         pre.textContent = JSON.stringify({
           instance_id: inst.id,
@@ -881,8 +1202,8 @@ Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#P
       const sparqlP95 = (41 + Math.random() * 10).toFixed(1);
       document.getElementById('sql-p95-val').textContent = `${sqlP95} ms`;
       document.getElementById('sparql-p95-val').textContent = `${sparqlP95} ms`;
-      document.getElementById('sql-p95-bar').style.width = `${Math.min(95, sqlP95 * 1.3)}%`;
-      document.getElementById('sparql-p95-bar').style.width = `${Math.min(95, sparqlP95 * 1.2)}%`;
+      document.getElementById('sql-p95-bar').style.width = `${Math.min(92, sqlP95 * 1.3)}%`;
+      document.getElementById('sparql-p95-bar').style.width = `${Math.min(92, sparqlP95 * 1.2)}%`;
 
       document.getElementById('k6-summary-output').textContent = `execution: local
    script: benchmarks/k6/dual_engine_benchmark.js
@@ -899,7 +1220,6 @@ Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#P
    vus_max....................: 50     min=1    max=50`;
     }
 
-    // Initialize default views
     selectRecord('loc-jpn-001');
     runShaclTest('valid');
     renderRonovaTable();
