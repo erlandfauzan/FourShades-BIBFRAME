@@ -264,12 +264,21 @@
       position: relative;
       width: 100%;
       height: 155px;
-      background: var(--bg-elevated);
+      background: linear-gradient(135deg, #162033, #0d1320);
       border-bottom: 1px solid var(--border);
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
     }
 
     .shade-banner img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -281,6 +290,7 @@
       position: absolute;
       top: 0.65rem;
       right: 0.65rem;
+      z-index: 2;
       font-size: 0.68rem;
       font-weight: 700;
       padding: 0.22rem 0.6rem;
@@ -393,7 +403,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Fixed 2-Column Code Grid (Prevents Overflow) */
+    /* Fixed 2-Column Code Grid */
     .code-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -650,7 +660,7 @@
       </div>
     </section>
 
-    <!-- Four Shades Architecture Cards (With Image Banner Slots) -->
+    <!-- Four Shades Architecture Cards -->
     <div class="section-head">
       <h2>Architectural Modules (The Four Shades)</h2>
       <p>Each module isolates a distinct data-engineering and quality-assurance responsibility.</p>
@@ -660,11 +670,8 @@
       <!-- CARD 1: NABERIUS -->
       <article class="shade-card">
         <div class="shade-banner">
-          <img
-            src="images/Naberius.png"
-            alt="Naberius - Shade of Life"
-            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22260%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230f2922%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2334d399%22 font-family=%22sans-serif%22 font-size=%2220%22 font-weight=%22bold%22>Naberius • Shade of Life</text></svg>';"
-          />
+          <span>Naberius &bull; Shade of Life</span>
+          <img src="images/Naberius.png" alt="Naberius - Shade of Life" onerror="this.style.display='none'" />
           <span class="shade-badge badge-life">Life</span>
         </div>
         <div class="shade-body">
@@ -681,11 +688,8 @@
       <!-- CARD 2: ISTAROTH -->
       <article class="shade-card">
         <div class="shade-banner">
-          <img
-            src="images/Istaroth.png"
-            alt="Istaroth - Shade of Time"
-            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22260%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230c2438%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2338bdf8%22 font-family=%22sans-serif%22 font-size=%2220%22 font-weight=%22bold%22>Istaroth • Shade of Time</text></svg>';"
-          />
+          <span>Istaroth &bull; Shade of Time</span>
+          <img src="images/Istaroth.png" alt="Istaroth - Shade of Time" onerror="this.style.display='none'" />
           <span class="shade-badge badge-time">Time</span>
         </div>
         <div class="shade-body">
@@ -702,11 +706,8 @@
       <!-- CARD 3: ASMODAY -->
       <article class="shade-card">
         <div class="shade-banner">
-          <img
-            src="images/Asmoday.png"
-            alt="Asmoday - Shade of Space"
-            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22260%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23231338%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23c084fc%22 font-family=%22sans-serif%22 font-size=%2220%22 font-weight=%22bold%22>Asmoday • Shade of Space</text></svg>';"
-          />
+          <span>Asmoday &bull; Shade of Space</span>
+          <img src="images/Asmoday.png" alt="Asmoday - Shade of Space" onerror="this.style.display='none'" />
           <span class="shade-badge badge-space">Space</span>
         </div>
         <div class="shade-body">
@@ -723,11 +724,8 @@
       <!-- CARD 4: RONOVA -->
       <article class="shade-card">
         <div class="shade-banner">
-          <img
-            src="images/Ronova.png"
-            alt="Ronova - Shade of Death"
-            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22260%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%2333111d%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23fb7185%22 font-family=%22sans-serif%22 font-size=%2220%22 font-weight=%22bold%22>Ronova • Shade of Death</text></svg>';"
-          />
+          <span>Ronova &bull; Shade of Death</span>
+          <img src="images/Ronova.png" alt="Ronova - Shade of Death" onerror="this.style.display='none'" />
           <span class="shade-badge badge-death">Death</span>
         </div>
         <div class="shade-body">
