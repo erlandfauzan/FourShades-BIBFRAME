@@ -95,7 +95,8 @@ In a second terminal, execute the `k6` SPARQL vs. SQLite latency benchmark:
 ---
 
 ## 🌌 5. Origin & Naming Lore
-In the cosmological lore of *Genshin Impact*, Celestia governs the foundational laws of Teyvat through the **Four Shades**—primordial entities presiding over **Life** (*Naberius*), **Time** (*Istaroth*), **Space** (*Asmoday*), and **Death** (*Ronova*)—maintaining strict structural order across the world's records.
+
+In the cosmological lore of *Genshin Impact*, Celestia governs the foundational laws of Teyvat through the **Four Shades**, primordial entities presiding over **Life** (*Naberius*), **Time** (*Istaroth*), **Space** (*Asmoday*), and **Death** (*Ronova*), maintaining strict structural order across the world's records.
 
 **FourShades-BIBFRAME** draws inspiration from this governance motif into concrete library data engineering and QA architecture. Each Shade encapsulates an isolated microservice responsibility: **Naberius** breathes semantic life into flat MARC21 records; **Istaroth** tracks chronological editions and provenance across time; **Asmoday** bridges relational and graph query spaces; and **Ronova** reaps decayed external URIs into audited `HTTP 410 Gone` tombstones.
 
